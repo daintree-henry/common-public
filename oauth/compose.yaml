@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  common_oauth_redis:
+    image: 'redis:6.0.20-alpine3.18'
+    command: redis-server --protected-mode no --requirepass SECURED
+    ports:
+      - '7010:6379'

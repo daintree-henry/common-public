@@ -1,0 +1,51 @@
+server:
+  port: ${PORT:7008}
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google-idp:
+            provider: google
+            client-id: ${GOOGLE_CLIENT_ID:SECURED}
+            client-secret: ${GOOGLE_CLIENT_SECRET:SECURED}
+            scope: openid, https://www.googleapis.com/auth/userinfo.profile, https://www.googleapis.com/auth/userinfo.email
+            client-name: Sign in with google
+        provider:
+          google:
+            user-name-attribute: emailÚ
+  data:
+    redis:
+      port: ${REDIS_PORT:7010}
+      host: ${REDIS_HOST:localhost}
+      password: ${REDIS_PASS:SECURED}
+
+logging:
+  level:
+    root: ${LOOT_LOGGING_LEVEL:INFO}
+    org.springframework.web: ${WEB_LOGGING_LEVEL:INFO}
+    org.springframework.security: ${SECURITY_LOGGING_LEVEL:INFO}
+    org.springframework.security.oauth2: ${OAUTH2_LOGGING_LEVEL:INFO}
+
+debug: true
+
+application:
+  security:
+    jwt:
+      key-id: ${JWT_KEY_ID:SECURED}
+      expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:86400000} # a day
+      refresh-token:
+        expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:604800000} # 7 days
+
+management:
+  endpoints:
+    web:
+      base-path: /common/oauth
+      exposure:
+        include: 'health'
+
+feginclient:
+  url:
+    common:
+      user: ${SVC_COMMON_USER:localhost:7005}

@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.1.1'
+    id "net.linguica.maven-settings" version "0.5"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+}
+
+bootJar {
+    enabled = false
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            // Add this line
+            versionMapping {
+                allVariants {
+                    fromResolutionResult()
+                }
+            }
+
+            groupId = 'online.devwiki.common'
+            artifactId = 'comuser'
+            version = '1.0.0'
+        }
+    }
+    repositories {
+        maven {
+            name 'devwikiorg'
+            url 'SECURED'  // 여기에 Maven 저장소 URL을 입력
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.1.1'
+    id "net.linguica.maven-settings" version "0.5"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
+    maven {
+        name 'devwikiorg'
+        url 'SECURED'
+    }
+}
+
+dependencies {
+    //common-user-role
+    implementation 'online.devwiki.common:libuser:1.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+}
+
+bootJar {
+    enabled = false
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            // Add this line
+            versionMapping {
+                allVariants {
+                    fromResolutionResult()
+                }
+            }
+
+            groupId = 'online.devwiki.common'
+            artifactId = 'oauth-jwt'
+            version = '1.0.2'
+        }
+    }
+    repositories {
+        maven {
+            name 'devwikiorg'
+            url 'SECURED'  // 여기에 Maven 저장소 URL을 입력
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
+
+

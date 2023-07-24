@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  common_user_postgres:
+    build: 'postgres'
+    image: 'common_user_postgres:latest'
+    environment:
+      - 'POSTGRES_DB=common_user'
+      - 'POSTGRES_PASSWORD=SECURED' # (실 배포시 수정됩니다.)
+      - 'POSTGRES_USER=devwikiuser' # (실 배포시 수정됩니다.)
+    ports:
+      - '7004:5432'

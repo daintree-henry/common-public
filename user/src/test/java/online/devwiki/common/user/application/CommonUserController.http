@@ -1,0 +1,73 @@
+###
+POST http://localhost:7005/api/v1/common/common-user
+Content-Type: application/json
+
+{
+  "loginId": "testuser",
+  "email": "example91234@email.com",
+  "password": "testpassword",
+  "gender": "MAN",
+  "name": "John Doe",
+  "dateOfBirth": "1990-01-01",
+  "status": "ACTIVE",
+  "accountVerified": true,
+  "userInfo": {
+    "nickname": "test",
+    "phoneNumber": "123-456-7890",
+    "streetAddress": "123 Example St",
+    "city": "Example City",
+    "state": "Example State",
+    "country": "Example Country",
+    "postalCode": "12345",
+    "profilePictureUrl": "https://example.com/profile_picture.jpg",
+    "occupation": "Software Engineer"
+  }
+}
+
+###
+POST http://localhost:7005/api/v1/common/common-user
+Content-Type: application/json
+
+{
+  "loginId": "example9222_login_id",
+  "email": "example2922@email.com",
+  "password": "example_password",
+  "gender": "MAN",
+  "name": "John Doe",
+  "dateOfBirth": "1990-01-01",
+  "status": "ACTIVE",
+  "accountVerified": true
+}
+
+###
+GET http://localhost:7005/api/v1/common/common-user/11
+Content-Type: application/json
+
+###
+POST http://localhost:7005/api/v1/common/common-user/authenticate
+Content-Type: application/json
+
+{
+  "loginId": "john.doe@gmail.com",
+  "password": "password"
+}
+
+###
+GET http://localhost:7005/api/v1/common/common-user/page?status=ACTIVE
+Content-Type: application/json
+
+###
+POST http://localhost:7005/api/v1/common/common-user/is-duplicated
+Content-Type: application/json
+
+{
+  "loginId": "testuser"
+}
+
+###
+POST http://localhost:7005/api/v1/common/common-user/login-id
+Content-Type: application/json
+
+{
+  "loginId": "john.doe@gmail.com"
+}

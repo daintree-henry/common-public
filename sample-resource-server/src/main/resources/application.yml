@@ -1,0 +1,11 @@
+server:
+  port: ${PORT:11321}
+
+logging:
+  level:
+    root: ${LOOT_LOGGING_LEVEL:INFO}
+
+application:
+  security:
+    jwt:
+      key-id: ${JWT_KEY_ID:SECURED}
