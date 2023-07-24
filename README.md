@@ -31,6 +31,6 @@ $ docker compose up -d
 * Sample Server: 토큰 활용한 사용자 인증 및 데이터 제공
 
 ### 라이브러리 구성
-- online.devwiki.common:libuser:1.0.0 = 내부 인증용 사용자 DTO 및 Role 라이브러리
+- online.devwiki.common:libuser:1.0.0 = 내부 인증용 사용자 Dto 및 Role 라이브러리
 - online.devwiki.common:comuser:1.0.0 = 배치를 통해 각 모듈에 동기화될 CacheUser Entity 및 Dto 라이브러리
 - online.devwiki.common:oauth-jwt:1.0.2 = JWT 디코딩 라이브러리, JWT 인증서버로 토큰 검증 Proxy 추가 예정
