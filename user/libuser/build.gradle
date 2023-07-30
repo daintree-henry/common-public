@@ -40,16 +40,17 @@ publishing {
             }
 
             groupId = 'online.devwiki.common'
-            artifactId = 'libuser'
-            version = '1.0.0'
+            artifactId = 'lib-user'
+            version = '1.0.7'
         }
     }
     repositories {
         maven {
             name 'devwikiorg'
-            url 'SECURED'  // 여기에 Maven 저장소 URL을 입력
-            authentication {
-                basic(BasicAuthentication)
+            url 'https://pkgs.dev.azure.com/devwikiorg/_packaging/devwikiorg/maven/v1'  // 여기에 Maven 저장소 URL을 입력
+            credentials {
+                username = project.findProperty('repoUser') ?: System.getenv('REPO_USER')
+                password = project.findProperty('repoPassword') ?: System.getenv('REPO_PASSWORD')
             }
         }
     }

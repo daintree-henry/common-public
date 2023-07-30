@@ -19,7 +19,7 @@ repositories {
     maven { url "https://repo.spring.io/milestone" }
     maven {
         name 'devwikiorg'
-        url 'SECURED'
+        url 'https://pkgs.dev.azure.com/devwikiorg/_packaging/devwikiorg/maven/v1'
         credentials {
             username = project.findProperty('repoUser') ?: System.getenv('REPO_USER')
             password = project.findProperty('repoPassword') ?: System.getenv('REPO_PASSWORD')
@@ -43,10 +43,10 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    //common-user-role
-    implementation 'online.devwiki.common:libuser:1.0.0'
+    //common-lib-user
+    implementation 'online.devwiki.common:lib-user:1.0.7'
     //common-oauth-jwt
-    implementation 'online.devwiki.common:oauth-jwt:1.0.2'
+    implementation 'online.devwiki.common:oauth-jwt:1.0.17'
 
     compileOnly 'org.projectlombok:lombok'
 

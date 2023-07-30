@@ -12,6 +12,9 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //QueryDsl
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
 }
 
 bootJar {
@@ -31,16 +34,17 @@ publishing {
             }
 
             groupId = 'online.devwiki.common'
-            artifactId = 'comuser'
-            version = '1.0.0'
+            artifactId = 'caching-user'
+            version = '1.0.2'
         }
     }
     repositories {
         maven {
             name 'devwikiorg'
-            url 'SECURED'  // 여기에 Maven 저장소 URL을 입력
-            authentication {
-                basic(BasicAuthentication)
+            url 'https://pkgs.dev.azure.com/devwikiorg/_packaging/devwikiorg/maven/v1'  // 여기에 Maven 저장소 URL을 입력
+            credentials {
+                username = project.findProperty('repoUser') ?: System.getenv('REPO_USER')
+                password = project.findProperty('repoPassword') ?: System.getenv('REPO_PASSWORD')
             }
         }
     }

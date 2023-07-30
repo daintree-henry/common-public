@@ -4,20 +4,20 @@ import java.io.Serializable;
 
 public class JwtTokenDto implements Serializable {
 
-    public String loginId;
+    public String userId;
     public String token;
 
-    public JwtTokenDto(String loginId, String token) {
-        this.loginId = loginId;
+    public JwtTokenDto(String userId, String token) {
+        this.userId = userId;
         this.token = token;
     }
 
-    public String getLoginId() {
-        return loginId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setLoginId(String loginId) {
-        this.loginId = loginId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getToken() {

@@ -14,7 +14,7 @@ spring:
             client-name: Sign in with google
         provider:
           google:
-            user-name-attribute: emailÚ
+            user-name-attribute: email
   data:
     redis:
       port: ${REDIS_PORT:7010}

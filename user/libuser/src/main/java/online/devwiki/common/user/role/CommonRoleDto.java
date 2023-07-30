@@ -15,11 +15,11 @@ import java.util.Set;
 public class CommonRoleDto implements GrantedAuthority {
 
     private Long roleId;
-    private String name;
+    private String roleName;
     private Set<CommonPermissionDto> permissionSet;
 
     @Override
     public String getAuthority() {
-        return name;
+        return roleName;
     }
 }

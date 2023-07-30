@@ -1,4 +1,4 @@
 rootProject.name = 'user'
 include('libuser')
-include('comuser')
+include('cachinguser')
 

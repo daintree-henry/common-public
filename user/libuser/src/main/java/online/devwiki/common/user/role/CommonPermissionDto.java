@@ -11,5 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CommonPermissionDto {
     private Long permissionId;
-    private String name;
+    private String permissionName;
 }

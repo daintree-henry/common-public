@@ -3,10 +3,10 @@ package online.devwiki.common.user.domain.service.implementation;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import online.devwiki.common.user.domain.model.CommonUserInfo;
 import online.devwiki.common.user.domain.repository.CommonUserInfoRepository;
 import online.devwiki.common.user.domain.service.CommonUserInfoService;
 import online.devwiki.common.user.dto.CommonUserInfoDto;
-import online.devwiki.common.user.domain.model.CommonUserInfo;
 import online.devwiki.common.user.mapper.CommonUserInfoMapper;
 import org.springframework.stereotype.Service;
 

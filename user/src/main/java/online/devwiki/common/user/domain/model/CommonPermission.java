@@ -20,5 +20,5 @@ public class CommonPermission {
     private Long permissionId;
 
     @Column(length = 60)
-    private String name;
+    private String permissionName;
 }

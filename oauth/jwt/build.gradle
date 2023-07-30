@@ -11,15 +11,21 @@ repositories {
     maven { url "https://repo.spring.io/milestone" }
     maven {
         name 'devwikiorg'
-        url 'SECURED'
+        url 'https://pkgs.dev.azure.com/devwikiorg/_packaging/devwikiorg/maven/v1'
+        credentials {
+            username = project.findProperty('repoUser') ?: System.getenv('REPO_USER')
+            password = project.findProperty('repoPassword') ?: System.getenv('REPO_PASSWORD')
+        }
     }
 }
 
 dependencies {
-    //common-user-role
-    implementation 'online.devwiki.common:libuser:1.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //common-user-role
+    implementation 'online.devwiki.common:lib-user:1.0.7'
 }
 
 bootJar {
@@ -40,15 +46,16 @@ publishing {
 
             groupId = 'online.devwiki.common'
             artifactId = 'oauth-jwt'
-            version = '1.0.2'
+            version = '1.0.17'
         }
     }
     repositories {
         maven {
             name 'devwikiorg'
-            url 'SECURED'  // 여기에 Maven 저장소 URL을 입력
-            authentication {
-                basic(BasicAuthentication)
+            url 'https://pkgs.dev.azure.com/devwikiorg/_packaging/devwikiorg/maven/v1'  // 여기에 Maven 저장소 URL을 입력
+            credentials {
+                username = project.findProperty('repoUser') ?: System.getenv('REPO_USER')
+                password = project.findProperty('repoPassword') ?: System.getenv('REPO_PASSWORD')
             }
         }
     }

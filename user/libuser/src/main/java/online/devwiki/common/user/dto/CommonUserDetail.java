@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,11 +50,48 @@ public class CommonUserDetail implements UserDetails {
                 .build();
     }
 
+    public Boolean hasAnyRole(String... roleNames) {
+        if (this.roleDtoSet.isEmpty()) return false;
+        for (String roleName : roleNames) {
+            if (roleDtoSet.stream().noneMatch(x -> x.getRoleName().equalsIgnoreCase(roleName))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Boolean hasRole(String roleName) {
+        if (this.roleDtoSet.isEmpty()) return false;
+        return roleDtoSet.stream()
+                .anyMatch(x -> x.getRoleName()
+                        .equalsIgnoreCase(roleName));
+    }
+
+    public Boolean hasAnyPermission(String... permissionNames) {
+        if (this.roleDtoSet.isEmpty()) return false;
+        for (String permissionName : permissionNames) {
+            if (roleDtoSet.stream()
+                    .flatMap(rs -> rs.getPermissionSet().stream())
+                    .anyMatch(ps -> ps.getPermissionName().equalsIgnoreCase(permissionName))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean hasPermission(String permissionName) {
+        if (this.roleDtoSet.isEmpty()) return false;
+        return roleDtoSet.stream()
+                .flatMap(rs -> rs.getPermissionSet().stream())
+                .anyMatch(ps -> ps.getPermissionName()
+                        .equalsIgnoreCase(permissionName));
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (roleDtoSet == null || roleDtoSet.isEmpty()) return null;
         return roleDtoSet.stream()
-                .map(roleDto -> new SimpleGrantedAuthority(roleDto.getName()))
+                .map(roleDto -> new SimpleGrantedAuthority(roleDto.getRoleName()))
                 .collect(Collectors.toSet());
     }
 
@@ -67,7 +102,7 @@ public class CommonUserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return loginId;
+        return userId.toString();
     }
 
     @Override
@@ -88,16 +123,5 @@ public class CommonUserDetail implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.status.isValid();
-    }
-
-    public Map<String, Object> toExtraClaim() {
-        Map<String, Object> extraClaim = new HashMap<>();
-        if (this.roleDtoSet != null) extraClaim.put("roles", this.roleDtoSet);
-        if (this.status != null)
-            extraClaim.put("status", this.status.toString());
-        if (this.name != null) extraClaim.put("username", this.name);
-        if (this.accountVerified != null)
-            extraClaim.put("accountVerified", this.accountVerified);
-        return extraClaim;
     }
 }

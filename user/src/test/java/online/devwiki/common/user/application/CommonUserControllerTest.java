@@ -3,8 +3,8 @@ package online.devwiki.common.user.application;
 import jakarta.persistence.EntityNotFoundException;
 import online.devwiki.common.user.domain.service.CommonUserService;
 import online.devwiki.common.user.dto.CommonUserDto;
-import online.devwiki.common.user.dto.Status;
 import online.devwiki.common.user.dto.Gender;
+import online.devwiki.common.user.dto.Status;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -46,7 +46,7 @@ public class CommonUserControllerTest {
         general = CommonUserDto.General.builder()
                 .loginId("testUser")
                 .userId(1L)
-                .name("testUser")
+                .userName("testUser")
                 .dateOfBirth(LocalDate.parse("1990-09-17"))
                 .gender(Gender.MAN)
                 .status(Status.ACTIVE)
@@ -54,7 +54,7 @@ public class CommonUserControllerTest {
                 .accountVerified(true)
                 .build();
         generalJsonResult = """
-                {"userId":1,"loginId":"testUser","email":"testUser@qmail.com","dateOfBirth":"1990-09-17","status":"ACTIVE","gender":"MAN","name":"testUser","accountVerified":true,"createdAt":null,"updatedAt":null,"roleSet":null,"userInfo":null}""";
+                {"userId":1,"loginId":"testUser","email":"testUser@qmail.com","dateOfBirth":"1990-09-17","status":"ACTIVE","gender":"MAN","userName":"testUser","accountVerified":true,"createdAt":null,"updatedAt":null,"roleSet":null,"userInfo":null}""";
 
         given(commonUserService.createCommonUser(any())).willReturn(1L);
         given(commonUserService.getUserByUserId(1L)).willReturn(general);
@@ -78,7 +78,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -95,7 +95,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17",
                     "userDetail": ""
                 }
@@ -116,7 +116,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -130,7 +130,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -149,7 +149,7 @@ public class CommonUserControllerTest {
                     "email": "",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -164,7 +164,7 @@ public class CommonUserControllerTest {
                     "loginId": "test_user",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -182,7 +182,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -196,7 +196,7 @@ public class CommonUserControllerTest {
                     "loginId": "test_user",
                     "email": "test@email.com",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -214,7 +214,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -228,7 +228,7 @@ public class CommonUserControllerTest {
                     "loginId": "test_user",
                     "email": "test@email.com",
                     "password": "password",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -248,7 +248,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "",
+                    "userName": "",
                     "dateOfBirth": "1990-09-17"
                 }
                 """;
@@ -285,7 +285,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": ""
                 }
                 """;
@@ -302,7 +302,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test"
+                    "userName": "test"
                 }
                 """;
         mockMvc.perform(post("/api/v1/common/common-user")
@@ -321,7 +321,7 @@ public class CommonUserControllerTest {
                     "email": "test@example.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990/09/17"
                 }
                 """;
@@ -340,7 +340,7 @@ public class CommonUserControllerTest {
                     "email": "test@email.com",
                     "password": "password",
                     "gender": "MAN",
-                    "name": "test",
+                    "userName": "test",
                     "dateOfBirth": "1990-09-17",
                     "userDetail": {
                         "nickname": "test",
@@ -499,8 +499,8 @@ public class CommonUserControllerTest {
     @Test
     void isDuplicatedWithMissingLoginId() throws Exception {
         mockMvc.perform(post("/api/v1/common/common-user/is-duplicated")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(""))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(""))
                 .andExpect(status().isBadRequest());
     }
 

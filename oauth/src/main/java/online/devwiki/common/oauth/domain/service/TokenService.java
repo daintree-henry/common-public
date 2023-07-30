@@ -22,9 +22,9 @@ public class TokenService {
     }
 
     public void saveToken(JwtTokenDto jwtTokenDto) {
-        if (hashOperations.hasKey(JWT_TOKEN_REDIS_KEY, jwtTokenDto.getLoginId()))
-            hashOperations.delete(JWT_TOKEN_REDIS_KEY, jwtTokenDto.getLoginId());
-        hashOperations.put(JWT_TOKEN_REDIS_KEY, jwtTokenDto.getLoginId(), jwtTokenDto.getToken());
+        if (hashOperations.hasKey(JWT_TOKEN_REDIS_KEY, jwtTokenDto.getUserId()))
+            hashOperations.delete(JWT_TOKEN_REDIS_KEY, jwtTokenDto.getUserId());
+        hashOperations.put(JWT_TOKEN_REDIS_KEY, jwtTokenDto.getUserId(), jwtTokenDto.getToken());
     }
 
     public JwtTokenDto findToken(String loginId) {

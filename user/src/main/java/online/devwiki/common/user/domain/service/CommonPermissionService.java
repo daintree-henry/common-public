@@ -10,6 +10,6 @@ public interface CommonPermissionService {
 
     CommonPermissionDto getPermissionById(Long permissionId);
 
-    Long createPermission(String name);
+    Long createPermission(String permissionName);
 
 }

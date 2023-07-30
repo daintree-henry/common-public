@@ -12,7 +12,9 @@ public class JwtPayload {
     private Instant exp;
     private Boolean accountVerified;
     private String status;
-    private String username;
+    private String name;
+    private Long userId;
+    private String loginId;
 
     public JwtPayload() {
     }
@@ -65,11 +67,27 @@ public class JwtPayload {
         this.status = status;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 }

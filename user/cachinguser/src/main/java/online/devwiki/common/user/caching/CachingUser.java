@@ -1,11 +1,12 @@
-package online.devwiki.common.user.comuser;
+package online.devwiki.common.user.caching;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "common_user", schema = "canyon")
-public class CommonUser {
+public class CachingUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +18,6 @@ public class CommonUser {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String name;
     private String gender;
     private LocalDate dateOfBirth;
@@ -33,10 +33,10 @@ public class CommonUser {
     private String postalCode;
     private String profilePictureUrl;
 
-    public CommonUser(){
+    public CachingUser() {
     }
 
-    public CommonUser(Long userId, String loginId, String email, String name, String gender, LocalDate dateOfBirth, String status, Boolean accountVerified, String nickname, String phoneNumber, String streetAddress, String city, String state, String country, String postalCode, String profilePictureUrl) {
+    public CachingUser(Long userId, String loginId, String email, String name, String gender, LocalDate dateOfBirth, String status, Boolean accountVerified, String nickname, String phoneNumber, String streetAddress, String city, String state, String country, String postalCode, String profilePictureUrl) {
         this.userId = userId;
         this.loginId = loginId;
         this.email = email;

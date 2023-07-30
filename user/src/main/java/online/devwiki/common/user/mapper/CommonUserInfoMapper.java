@@ -1,7 +1,7 @@
 package online.devwiki.common.user.mapper;
 
-import online.devwiki.common.user.dto.CommonUserInfoDto;
 import online.devwiki.common.user.domain.model.CommonUserInfo;
+import online.devwiki.common.user.dto.CommonUserInfoDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

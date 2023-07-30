@@ -7,6 +7,11 @@ public class ApiErrorResponse {
     private HttpStatusCode status;
     private String message;
 
+    public ApiErrorResponse(HttpStatusCode status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
     public HttpStatusCode getStatus() {
         return status;
     }
@@ -20,11 +25,6 @@ public class ApiErrorResponse {
     }
 
     public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public ApiErrorResponse(HttpStatusCode status, String message) {
-        this.status = status;
         this.message = message;
     }
 }

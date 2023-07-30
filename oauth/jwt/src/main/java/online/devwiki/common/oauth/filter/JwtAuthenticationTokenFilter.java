@@ -1,4 +1,4 @@
-package online.devwiki.sampleresourceserver.config;
+package online.devwiki.common.oauth.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

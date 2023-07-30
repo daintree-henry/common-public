@@ -1,6 +1,10 @@
 package online.devwiki.common.oauth.jwt;
 
+import online.devwiki.common.user.dto.CommonUserDetail;
+import online.devwiki.common.user.dto.Status;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+
+import java.util.Set;
 
 public class JwtTokenAuthentication extends AbstractAuthenticationToken {
 
@@ -9,7 +13,15 @@ public class JwtTokenAuthentication extends AbstractAuthenticationToken {
     public JwtTokenAuthentication(JwtPayload jwtPayload) {
         super(jwtPayload.getRoles());
         this.jwtPayload = jwtPayload;
-        setDetails(jwtPayload);
+        setDetails(CommonUserDetail.builder()
+                .userId(jwtPayload.getUserId())
+                .loginId(jwtPayload.getLoginId())
+                .accountVerified(jwtPayload.getAccountVerified())
+                .roleDtoSet(Set.copyOf(jwtPayload.getRoles()))
+                .status(Status.valueOf(jwtPayload.getStatus()))
+                .name(jwtPayload.getName())
+                .build()
+        );
     }
 
     @Override
@@ -19,7 +31,6 @@ public class JwtTokenAuthentication extends AbstractAuthenticationToken {
 
     @Override
     public Object getPrincipal() {
-        return jwtPayload.getSub();
+        return jwtPayload.getUserId();
     }
-
 }

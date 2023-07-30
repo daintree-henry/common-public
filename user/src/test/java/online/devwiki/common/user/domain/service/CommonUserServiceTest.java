@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
@@ -25,7 +24,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.when;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
 public class CommonUserServiceTest {
 
     CommonUserInfo createdCommonUserInfo = CommonUserInfo.builder()
@@ -45,7 +43,7 @@ public class CommonUserServiceTest {
             .email("testUsetId@qmail.com")
             .password(EncryptionUtil.encrypt("password"))
             .gender("MAN")
-            .name("testusername")
+            .userName("testusername")
             .dateOfBirth(LocalDate.parse("2020-10-10"))
             .status("ACTIVE")
             .accountVerified(false)
@@ -82,7 +80,7 @@ public class CommonUserServiceTest {
                 .email("testUsetId@qmail.com")
                 .password("testpassword")
                 .gender(Gender.MAN)
-                .name("testusername")
+                .userName("testusername")
                 .dateOfBirth(LocalDate.parse("2020-10-10"))
                 .status(Status.ACTIVE)
                 .accountVerified(false)
@@ -106,7 +104,7 @@ public class CommonUserServiceTest {
         assertEquals("testuserid", result.getLoginId());
         assertEquals("testUsetId@qmail.com", result.getEmail());
         assertEquals("MAN", result.getGender().getValue());
-        assertEquals("testusername", result.getName());
+        assertEquals("testusername", result.getUserName());
         assertEquals("2020-10-10", result.getDateOfBirth().toString());
         assertEquals("ACTIVE", result.getStatus().getValue());
         assertEquals(false, result.getAccountVerified());

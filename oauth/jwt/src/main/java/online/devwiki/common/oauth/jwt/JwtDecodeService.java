@@ -11,15 +11,9 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import java.time.Instant;
 import java.util.*;
 
-public class JwtDecodeService {
+import static online.devwiki.common.oauth.jwt.JwtConstant.*;
 
-    public final static String ISSURE = "devwiki.online";
-    public final static String CLAIM_USER_IDENTIFIER = "sub";
-    public final static String CLAIM_ROLES = "roles";
-    public final static String CLAIM_STATUS = "status";
-    public final static String CLAIM_USERNAME = "username";
-    public final static String CLAIM_VARIFIED = "accountVerified";
-    public final static String CLAIM_EXPIRED = "exp";
+public class JwtDecodeService {
 
     private final JwtDecoder jwtDecoder;
 
@@ -44,8 +38,8 @@ public class JwtDecodeService {
             jwtPayload.setSub((String) claims.get(CLAIM_USER_IDENTIFIER));
         if (claims.containsKey(CLAIM_ROLES))
             jwtPayload.setRoles(parseRole((List<Object>) claims.get(CLAIM_ROLES)));
-        if (claims.containsKey(ISSURE))
-            jwtPayload.setIss((String) claims.get(ISSURE));
+        if (claims.containsKey(CLAIM_ISSURER))
+            jwtPayload.setIss((String) claims.get(CLAIM_ISSURER));
         if (claims.containsKey(CLAIM_EXPIRED))
             jwtPayload.setExp((Instant) claims.get(CLAIM_EXPIRED));
         if (claims.containsKey(CLAIM_VARIFIED))
@@ -53,7 +47,11 @@ public class JwtDecodeService {
         if (claims.containsKey(CLAIM_STATUS))
             jwtPayload.setStatus((String) claims.get(CLAIM_STATUS));
         if (claims.containsKey(CLAIM_USERNAME))
-            jwtPayload.setUsername((String) claims.get(CLAIM_USERNAME));
+            jwtPayload.setName((String) claims.get(CLAIM_USERNAME));
+        if (claims.containsKey(CLAIM_USERID))
+            jwtPayload.setUserId((Long) claims.get(CLAIM_USERID));
+        if (claims.containsKey(CLAIM_LOGINID))
+            jwtPayload.setLoginId((String) claims.get(CLAIM_LOGINID));
         return jwtPayload;
     }
 
@@ -94,14 +92,14 @@ public class JwtDecodeService {
         for (Object object : objList) {
             LinkedTreeMap map = (LinkedTreeMap) object;
 
-            Long roleId = (Long) map.get("roleId");
-            String name = (String) map.get("name");
+            Long roleId = (Long) map.get(CLAIM_ROLEID);
+            String name = (String) map.get(CLAIM_ROLENAME);
 
-            ArrayList<LinkedTreeMap> permissions = (ArrayList<LinkedTreeMap>) map.get("permissionSet");
+            ArrayList<LinkedTreeMap> permissions = (ArrayList<LinkedTreeMap>) map.get(CLAIM_PERMISSIONS);
             Set<CommonPermissionDto> permissionSet = new HashSet<>();
             for (LinkedTreeMap permissionMap : permissions) {
-                Long permissionId = (Long) permissionMap.get("permissionId");
-                String permissionName = (String) permissionMap.get("name");
+                Long permissionId = (Long) permissionMap.get(CLAIM_PERMISSIONID);
+                String permissionName = (String) permissionMap.get(CLAIM_PERMISSIONNAME);
                 permissionSet.add(new CommonPermissionDto(permissionId, permissionName));
             }
 

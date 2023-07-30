@@ -50,9 +50,9 @@ public class JwtConfig {
         ClassLoader classLoader = JwtConfig.class.getClassLoader();
         InputStream keyStream = classLoader.getResourceAsStream(keyPath);
         String keyContent = "";
-        try{
+        try {
             keyContent = IOUtils.readInputStreamToString(keyStream, StandardCharsets.UTF_8);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new JOSEException(e.getMessage());
         }
 
@@ -67,5 +67,4 @@ public class JwtConfig {
 
         return new ImmutableJWKSet<>(new JWKSet(jwk));
     }
-
 }

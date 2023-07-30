@@ -22,7 +22,7 @@ public class CommonRole {
     private Long roleId;
 
     @Column(length = 60)
-    private String name;
+    private String roleName;
 
     @ManyToMany
     @JoinTable(

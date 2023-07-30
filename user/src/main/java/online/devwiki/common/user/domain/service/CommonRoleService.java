@@ -9,6 +9,6 @@ public interface CommonRoleService {
 
     CommonRoleDto getRoleById(Long roleId);
 
-    Long createRole(String name);
+    Long createRole(String roleName);
 
 }

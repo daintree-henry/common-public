@@ -120,9 +120,9 @@ public class ControllerErrorAspect {
         return new ResponseEntity<>(error, error.getStatus());
     }
 
-    private void printErrorMessageWithStackTrace(Exception e){
+    private void printErrorMessageWithStackTrace(Exception e) {
         log.error(e.getMessage());
-        if(e.getCause() != null)log.error(e.getCause().getMessage());
+        if (e.getCause() != null) log.error(e.getCause().getMessage());
         log.error(Arrays.stream(e.getStackTrace())
                 .map(StackTraceElement::toString)
                 .filter(line -> line.contains(STACK_TRACE_SPECIFIC_FIELD))
@@ -130,7 +130,7 @@ public class ControllerErrorAspect {
                 .collect(Collectors.joining("\n")));
     }
 
-    private void printErrorMessageWithStackTrace(String className, Exception e){
+    private void printErrorMessageWithStackTrace(String className, Exception e) {
         log.error("ERROR CLASS: ", e.getMessage());
         printErrorMessageWithStackTrace(e);
     }

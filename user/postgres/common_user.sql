@@ -12,7 +12,7 @@ CREATE TABLE canyon.common_user_info
 	state               VARCHAR(255),
 	country             VARCHAR(255),
 	postal_code         VARCHAR(100),
-	profile_picture_url  VARCHAR(255),
+	profile_picture_url VARCHAR(255),
 	occupation          VARCHAR(255),
 	created_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at          TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -39,14 +39,14 @@ CREATE INDEX idx_common_user_gender ON canyon.common_user (gender);
 
 CREATE TABLE canyon.common_role
 (
-	role_id BIGSERIAL PRIMARY KEY,
-	name    character varying(60) NOT NULL
+	role_id   BIGSERIAL PRIMARY KEY,
+	role_name character varying(60) NOT NULL
 );
 
 CREATE TABLE canyon.common_permission
 (
-	permission_id BIGSERIAL PRIMARY KEY,
-	name          character varying(60) NOT NULL
+	permission_id   BIGSERIAL PRIMARY KEY,
+	permission_name character varying(60) NOT NULL
 );
 
 CREATE TABLE canyon.common_user_common_role
@@ -91,16 +91,16 @@ CREATE TABLE canyon.common_social_accounts
 CREATE INDEX idx_common_social_accounts_user_id ON canyon.common_social_accounts (user_id);
 
 INSERT INTO canyon.common_user_info (nickname, phone_number, street_address, city, state, country, postal_code)
-VALUES ('john','010-555-5555', '123 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('jane','010-555-5556', '124 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('michael','010-555-5557', '125 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('jim','010-555-5558', '126 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('pam','010-555-5559', '127 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('dwight','010-555-5560', '128 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('angela','010-555-5561', '129 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('kevin','010-555-5562', '130 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('oscar','010-555-5563', '131 Main St', 'Scranton', 'PA', 'USA', '18503'),
-       ('toby','010-555-5564', '132 Main St', 'Scranton', 'PA', 'USA', '18503');
+VALUES ('john', '010-555-5555', '123 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('jane', '010-555-5556', '124 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('michael', '010-555-5557', '125 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('jim', '010-555-5558', '126 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('pam', '010-555-5559', '127 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('dwight', '010-555-5560', '128 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('angela', '010-555-5561', '129 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('kevin', '010-555-5562', '130 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('oscar', '010-555-5563', '131 Main St', 'Scranton', 'PA', 'USA', '18503'),
+       ('toby', '010-555-5564', '132 Main St', 'Scranton', 'PA', 'USA', '18503');
 
 INSERT INTO canyon.common_user (login_id, email, name, password, gender, date_of_birth, status, account_verified,
                                 user_info_id)
@@ -157,7 +157,7 @@ VALUES (1, 'Facebook', 'social_id1', 'access_token1', 'refresh_token1', '2023-01
        (9, 'GitHub', 'social_id9', 'access_token9', 'refresh_token9', '2023-01-09 00:00:00'),
        (10, 'GitHub', 'social_id10', 'access_token10', 'refresh_token10', '2023-01-10 00:00:00');
 
-INSERT INTO canyon.common_role(name)
+INSERT INTO canyon.common_role(role_name)
 VALUES ('ADMIN'),
        ('USER'),
        ('GUEST'),
@@ -175,7 +175,7 @@ VALUES ('ADMIN'),
        ('INTERN'),
        ('TEMP_EMPLOYEE');
 
-INSERT INTO canyon.common_permission(name)
+INSERT INTO canyon.common_permission(permission_name)
 VALUES ('READ_ALL'),
        ('WRITE_ALL'),
        ('DELETE_ALL'),

@@ -43,7 +43,7 @@ public class CommonUserAuthenticationService {
     }
 
     private AuthDto.AuthenticationResponse getAuthenticationResponse(CommonUserDetail userDetail) {
-        Jwt accessToken = jwtEncodeService.generateStringToken(userDetail.toExtraClaim(), userDetail);
+        Jwt accessToken = jwtEncodeService.generateStringToken(userDetail);
         Jwt refreshToken = jwtEncodeService.generateRefreshToken(userDetail);
         JwtPayload jwtTokenPayload = jwtDecodeService.extractPayload(accessToken.getTokenValue());
         authenticationManager.authenticate(new JwtTokenAuthentication(jwtTokenPayload));
@@ -70,7 +70,7 @@ public class CommonUserAuthenticationService {
 
         try {
             if (jwtDecodeService.isTokenValid(refreshToken, userDetail)) {
-                var accessToken = jwtEncodeService.generateStringToken(userDetail.toExtraClaim(), userDetail);
+                var accessToken = jwtEncodeService.generateStringToken(userDetail);
                 saveUserToken(userDetail, accessToken);
                 var authResponse = AuthDto.AuthenticationResponse.builder()
                         .accessToken(accessToken.getTokenValue())

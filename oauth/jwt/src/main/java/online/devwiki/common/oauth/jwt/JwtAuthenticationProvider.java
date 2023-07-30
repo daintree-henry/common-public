@@ -9,7 +9,6 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         JwtTokenAuthentication jwtTokenAuth = (JwtTokenAuthentication) authentication;
-        String username = jwtTokenAuth.getName();
 
         jwtTokenAuth.eraseCredentials();
         jwtTokenAuth.setAuthenticated(true);

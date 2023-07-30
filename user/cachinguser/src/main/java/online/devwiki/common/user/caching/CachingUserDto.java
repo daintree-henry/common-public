@@ -1,8 +1,8 @@
-package online.devwiki.common.user.comuser;
+package online.devwiki.common.user.caching;
 
 import java.time.LocalDate;
 
-public class CommonUserDto {
+public class CachingUserDto {
     private Long userId;
     private String loginId;
     private String email;
@@ -21,10 +21,10 @@ public class CommonUserDto {
     private String postalCode;
     private String profilePictureUrl;
 
-    public CommonUserDto(){
+    public CachingUserDto() {
     }
 
-    public CommonUserDto(Long userId, String loginId, String email, String name, String gender, LocalDate dateOfBirth, String status, Boolean accountVerified, String nickname, String phoneNumber, String streetAddress, String city, String state, String country, String postalCode, String profilePictureUrl) {
+    public CachingUserDto(Long userId, String loginId, String email, String name, String gender, LocalDate dateOfBirth, String status, Boolean accountVerified, String nickname, String phoneNumber, String streetAddress, String city, String state, String country, String postalCode, String profilePictureUrl) {
         this.userId = userId;
         this.loginId = loginId;
         this.email = email;
